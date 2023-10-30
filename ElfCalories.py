@@ -8,10 +8,6 @@ f = open("puzzleInput.txt", "r")
 currentElfInventory = 0
 # List of totals
 elfTotals = []
-# Index of the elf with the most calories
-chunkiestElfIndex = 0
-# Iterator for going through elfTotals
-elfIterator = 0
 
 # We go through every item in the list, adding items together for the total value. 
 # If we notice an empty line, we know we have finished iterating through the current inventory
@@ -23,12 +19,12 @@ for l in f:
     else:
         currentElfInventory = currentElfInventory + int(l)
 
-# We iterate through all the totals to find the highest total in the list
-for i in elfTotals:
-    if i > elfTotals[chunkiestElfIndex]:
-        chunkiestElfIndex = elfIterator
-    elfIterator += 1
+# We sort the elfTotals and add up the 3 largest
+elfTotals.sort()
+topThree = elfTotals[len(elfTotals)-1] + elfTotals[len(elfTotals)-2] + elfTotals[len(elfTotals)-3]
 
-# Print the highest total
-print(elfTotals[chunkiestElfIndex])
-  
+# Print the answer to the first puzzle
+print(elfTotals[len(elfTotals)-1])
+
+# print the answer to the second puzzle
+print(topThree)
